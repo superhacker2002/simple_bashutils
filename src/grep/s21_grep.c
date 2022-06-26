@@ -2,7 +2,6 @@
 
 int s21_grep(int argc, char *argv[]) {
     int patterns_counter = count_patterns(argc, argv);
-    // printf("pre patterns_countr %d\n", patterns_counter);
     regex_t *all_patterns = calloc(patterns_counter, sizeof(regex_t));  // массив шаблонов
 
     finded_options options_struct;  // массив флагов
