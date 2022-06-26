@@ -52,7 +52,6 @@ void find_all_matching(finded_options *opts, regex_t *all_patterns, char **argv,
     memset(file_buffer, '\0', 1000);
     regmatch_t pmatch;
     int epmty_last_line = 0;
-    int files = files_counter;
     for (int i = argc - files_counter; i < argc; i++) {
         file_to_read = fopen(argv[i], "r");
         if (file_to_read) {
@@ -88,7 +87,6 @@ void find_all_matching(finded_options *opts, regex_t *all_patterns, char **argv,
         } else if (opts->s_opt == '0') {
             printf("s21_grep: %s: No such file or directory", argv[i]);
         }
-        files--;
     }
 }
 
