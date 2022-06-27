@@ -21,19 +21,25 @@ int argv_parsing(finded_options *options_struct, int argc, char **argv,
     while (argv[option_index]) {
         options_struct->e_opt = '0';
         options_struct->f_opt = '0';
-        if (strlen(argv[option_index]) == 2 && argv[option_index][0] == '-') {
-            is_pattern = get_options(argv[option_index][1], options_struct);
-            if (is_pattern && options_struct->e_opt == '1') {
-                all_patterns[pattern_index++] = get_pattern(argv[option_index + 1], options_struct);
-                option_index++;
-            } else if (is_pattern && options_struct->f_opt == '1') {
-                get_patterns_from_file(argv[option_index + 1], all_patterns, &pattern_index, options_struct);
-                option_index++;
+        if ((strlen(argv[option_index]) == 2 || strlen(argv[option_index]) == 3)
+                                                && argv[option_index][0] == '-') {
+            if (strlen(argv[option_index]) == 3) {
+                get_options(argv[option_index][1], options_struct);
+                get_options(argv[option_index][2], options_struct);
+            } else {
+                is_pattern = get_options(argv[option_index][1], options_struct);
+                if (is_pattern && options_struct->e_opt == '1') {
+                    all_patterns[pattern_index++] = get_pattern(argv[option_index + 1], options_struct);
+                    option_index++;
+                } else if (is_pattern && options_struct->f_opt == '1') {
+                    get_patterns_from_file(argv[option_index + 1], all_patterns,
+                                                    &pattern_index, options_struct);
+                    option_index++;
+                }
             }
         } else {
-            if (is_pattern == 0) {
+            if (is_pattern == 0)
                 all_patterns[pattern_index++] = get_pattern(argv[option_index++], options_struct);
-            }
             break;
         }
         option_index++;
@@ -67,7 +73,7 @@ void find_all_matching(finded_options *opts, regex_t *all_patterns, char **argv,
                     if (opts->l_opt != '1' && opts->o_opt == '1') {
                         while (offset < (int)strlen(file_buffer)) {
                             value = regexec(&all_patterns[j], file_buffer + offset, 1, &pmatch, 0);
-                            if (value == 0 && files_counter > 1) printf("%s:", argv[i]);
+                            if (value == 0 && files_counter > 1 && opts->h_opt == '0') printf("%s:", argv[i]);
                             print_o_lines(file_buffer, value, &pmatch, &offset);
                         }
                     } else {

@@ -18,6 +18,12 @@ int main(void) {
     tests_5();
     tests_6();
     tests_7();
+    tests_8();
+    tests_9();
+    tests_10();
+    tests_11();
+    tests_12();
+    tests_13();
     testy_1();
     testy_2();
     testy_3();
@@ -543,3 +549,83 @@ void testy_13() {
     system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
 }
 
+void tests_8() {
+    char command1[512] = {'\0'};
+    char command2[512] = {'\0'};
+    strcat(command1, "grep");
+    strcat(command2, "./s21_grep");
+    strcat(command1, " -ve health  tmp4 > v1");
+    strcat(command2, " -ve health  tmp4  > v2");
+    printf("%s\n", command1);
+    printf("%s\n", command2);
+    system(command1);
+    system(command2);
+    system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
+}
+void tests_9() {
+    char command1[512] = {'\0'};
+    char command2[512] = {'\0'};
+    strcat(command1, "grep");
+    strcat(command2, "./s21_grep");
+    strcat(command1, " -in coronavirus  tmp1 > v1");
+    strcat(command2, " -in coronavirus  tmp1  > v2");
+    printf("%s\n", command1);
+    printf("%s\n", command2);
+    system(command1);
+    system(command2);
+    system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
+}
+void tests_10() {
+    char command1[512] = {'\0'};
+    char command2[512] = {'\0'};
+    strcat(command1, "grep");
+    strcat(command2, "./s21_grep");
+    strcat(command1, " -iv coronavirus  tmp1 tmp2 > v1");
+    strcat(command2, " -iv coronavirus  tmp1 tmp2 > v2");
+    printf("%s\n", command1);
+    printf("%s\n", command2);
+    system(command1);
+    system(command2);
+    system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
+}
+void tests_11() {
+    char command1[512] = {'\0'};
+    char command2[512] = {'\0'};
+    strcat(command1, "grep");
+    strcat(command2, "./s21_grep");
+    strcat(command1, " -cv coronavirus  tmp1 tmp2 > v1");
+    strcat(command2, " -cv coronavirus  tmp1 tmp2 > v2");
+    printf("%s\n", command1);
+    printf("%s\n", command2);
+    system(command1);
+    system(command2);
+    system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
+}
+
+void tests_12() {
+    char command1[512] = {'\0'};
+    char command2[512] = {'\0'};
+    strcat(command1, "grep");
+    strcat(command2, "./s21_grep");
+    strcat(command1, " -lv coronavirus  tmp1 tmp2 > v1");
+    strcat(command2, " -lv coronavirus  tmp1 tmp2 > v2");
+    printf("%s\n", command1);
+    printf("%s\n", command2);
+    system(command1);
+    system(command2);
+    system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
+}
+
+void tests_13() {
+    char command1[512] = {'\0'};
+    char command2[512] = {'\0'};
+    strcat(command1, "grep");
+    strcat(command2, "./s21_grep");
+    strcat(command1, " -ho coronavirus  tmp1 tmp2 > v1");
+    strcat(command2, " -ho coronavirus  tmp1 tmp2 > v2");
+    printf("%s\n", command1);
+    printf("%s\n", command2);
+    system(command1);
+    system(command2);
+    system("diff v1 v2") ? printf("%sFAIL%s\n", RED, RESET) : printf("%sOK!%s\n", GRN, RESET);
+}
