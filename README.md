@@ -5,9 +5,7 @@ Development of Bash text utilities: cat, grep.
 ## Contents
 
 1. [Introduction](#introduction)
-2. [Information](#information) \
-   2.1. [s21_cat Usage](#working-with-the-cat-utility) \
-   2.2. [s21_grep Usage](#working-with-grep-utility)  
+2. [Information](#information) 
 
 ## Introduction
 
